@@ -26,7 +26,6 @@ public class H2O {
     public void hydrogen (Runnable releaseHydrogen) throws InterruptedException {
     	hydrogenQueue.put(releaseHydrogen); // Add H to queue and block if queue is full
     	releaseHydrogen.run();
-    	log.info("New H atom is in");
     }
 
     /**
@@ -36,7 +35,6 @@ public class H2O {
      */
     public void oxygen (Runnable releaseOxygen) throws InterruptedException {
         synchronized (lock) {
-        	log.info("New O atom is in");
             
         	//Wait for 2 hydrogens to be available, then consume them
         	hydrogenQueue.take();
