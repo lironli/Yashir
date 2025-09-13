@@ -1,13 +1,13 @@
-package com.yashir.oxygen;
+package com.yashir.water;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class OxygenApplication {
+public class WaterApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(OxygenApplication.class, args);
+		SpringApplication.run(WaterApplication.class, args);
 	}
 
 }

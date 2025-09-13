@@ -1,10 +1,10 @@
-package com.yashir.oxygen;
+package com.yashir.water;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class OxygenApplicationTests {
+class WaterApplicationTests {
 
 	@Test
 	void contextLoads() {
