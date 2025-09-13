@@ -12,7 +12,11 @@ import lombok.extern.slf4j.Slf4j;
 public class H2O {
 
 	private final BlockingQueue<Runnable> hydrogenQueue = new LinkedBlockingQueue<>(2);
-    private Object lock = new Object();
+    private Object hLock = new Object();
+    private Object oLock = new Object();
+    
+    public H2O() {
+    }
 
     /**
      * Adding new hydrogen atom to the hydrogen queue.
@@ -21,11 +25,13 @@ public class H2O {
      * @throws InterruptedException
      */
     public void hydrogen (Runnable releaseHydrogen) throws InterruptedException {
-    	hydrogenQueue.put(releaseHydrogen); // Add H to queue and block if queue is full
-    	
-    	log.info("New H atom is in");
-        
-    	releaseHydrogen.run();
+    	synchronized (hLock) {
+	    	hydrogenQueue.put(releaseHydrogen); // Add H to queue and block if queue is full
+	    	
+	    	log.info("New H atom is in");
+	        
+	    	releaseHydrogen.run();
+    	}
     }
 
     /**
@@ -34,7 +40,7 @@ public class H2O {
      * @throws InterruptedException
      */
     public void oxygen (Runnable releaseOxygen) throws InterruptedException {
-        synchronized (lock) {
+        synchronized (oLock) {
         	log.info("New O atom is in");
             
         	//Wait for 2 hydrogens to be available, then consume them
